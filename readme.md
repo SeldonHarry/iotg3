@@ -21,7 +21,9 @@ python3 ColorCamera/rgb_preview.py # 测试相机
 用以上命令安装例程实例代码
 ## task1
 思路：先得到高清的、无处理的深度数据，并且储存起来
-程序具体目标：先打开rgb图像层，然后在按下确认后开始使用双目视觉部分记录图像数据，结束记录后进行深度信息处理
+程序具体目标：先打开rgb图像层，然后在按下确认后开始使用双目视觉部分记录图像数据，结束记录后进行深度信息处理.
+
+由于stereo处理部分计算量占主导，参看https://docs.luxonis.com/software/depthai-components/nodes/stereo_depth/#StereoDepth-Stereo%20depth%20FPS来研究处理的时间
 
 ### 现象
 对于光线不佳、缺少纹理的表面数值会跳动较大

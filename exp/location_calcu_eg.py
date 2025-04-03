@@ -44,7 +44,7 @@ bottomRight = dai.Point2f(0.6, 0.6)
 config = dai.SpatialLocationCalculatorConfigData()  # message类型
 config.depthThresholds.lowerThreshold = 100
 config.depthThresholds.upperThreshold = 10000
-calculationAlgorithm = dai.SpatialLocationCalculatorAlgorithm.MEDIAN
+calculationAlgorithm = dai.SpatialLocationCalculatorAlgorithm.MEDIAN  # others:
 config.roi = dai.Rect(topLeft, bottomRight)
 
 spatialLocationCalculator.inputConfig.setWaitForMessage(False)
