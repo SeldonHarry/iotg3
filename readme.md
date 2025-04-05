@@ -5,6 +5,11 @@
 Multipath channel estimation plays a crucial role not only in mitigating interference in wireless communication but also in advancing sensing technologies. Traditional channel estimation methods rely on collaborative signal exchanges between transmitters and receivers, limiting their applicability in scenarios where pre-established communication links are unavailable. Recent developments in computer vision, however, offer a promising alternative by enabling real-time multipath estimation with unilateral participation. For example, by using a stereo camera to reconstruct 3D spatial maps between transceivers, ray-tracing simulations can be performed to infer wireless signal propagation paths. This vision-based approach allows for multipath channel prediction from the transmitter or any arbitrary viewpoint, greatly enhancing deployment flexibility. In this project, we aim to develop a vision-based multipath estimation pipeline and evaluate its performance on embedded devices in practical environments. While the proposed method is not limited to specific signal types, we prioritize acoustic waves due to their slower propagation speed, which enhances the detectability of multipath delays compared to electromagnetic signals.
 
 多径信道估计在无线通信中不仅对减轻干扰起着重要作用，而且在传感技术中也起着至关重要的推动作用。传统的信道估计方法依赖于发送器和接收器之间的协作信号交换，这在没有预先建立通信链路的情况下限制了其应用。然而，计算机视觉的最新进展为此提供了一种有前景的替代方案，能够实现单方面参与的实时多径估计。例如，使用立体相机重建发送器和接收器之间的3D空间地图，可以通过射线追踪仿真推断无线信号传播路径。这种基于视觉的方法允许在发送端或任意视角下进行多径信道预测，从而显著提升了部署的灵活性。在本项目中，我们旨在开发一个基于视觉的多径估计管道，并在实际环境中评估其在嵌入式设备上的性能。虽然该方法不限于信号类型，但我们优先考虑声波，因为声波的传播速度较慢，相较于电磁信号，它能放大多径延迟的可辨别性。
+
+1. 3D reconstruciton with binocular camera.
+2. Estimate the multipath channel based on the reconstructed 3D model with ray tracing.
+3. Leverage AI model to accelerate the pipeline.
+4. Implement the pipeline on Raspberry Pi and optimize for the delay.
 ## 安装方法
 基础环境 + python 包
 ```shell 
