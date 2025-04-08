@@ -8,3 +8,6 @@
 ## 4.4
 + TA建议：不用平面分割，拿到point cloud，转为mesh，然后直接用BVH这样的传统射线追踪跑一跑试试
 + 光线追踪和BVH学习：https://www.bilibili.com/video/av90798049/
+
+## 4.6
++ 设法把深度信息提取的方式找到并储存成数组文件（.cvs or .npz）

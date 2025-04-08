@@ -31,7 +31,7 @@ stereo.setDefaultProfilePreset(dai.node.StereoDepth.PresetMode.DEFAULT)
 # link the device
 monoLeft.out.link(xoutLeft.input)  # 拓扑链接,out连input
 monoRight.out.link(xoutRight.input)
-monoLeft.out.link(stereo.left)
+monoLeft.out.link(stereo.left) # 将monocam信息同时输出到stereo部分
 monoRight.out.link(stereo.right)
 
 

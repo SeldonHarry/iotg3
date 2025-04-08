@@ -99,7 +99,7 @@ with dai.Device(pipeline) as device:
         ).astype(np.uint8)
         depthFrameColor = cv2.applyColorMap(depthFrameColor, cv2.COLORMAP_HOT)
 
-        spatialData = spatialCalcQueue.get().getSpatialLocations()  # 关键处理
+        spatialData = spatialCalcQueue.get().getSpatialLocations()  # 关键处理, return list type
         for depthData in spatialData:
             roi = depthData.config.roi
             roi = roi.denormalize(
