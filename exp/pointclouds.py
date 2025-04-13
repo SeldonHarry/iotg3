@@ -6,12 +6,19 @@ import numpy as np
 import cv2
 import time
 import sys
+
 try:
     import open3d as o3d
 except ImportError:
-    sys.exit("Critical dependency missing: Open3D. Please install it using the command: '{} -m pip install open3d' and then rerun the script.".format(sys.executable))
+    sys.exit(
+        "Critical dependency missing: Open3D. Please install it using the command: '{} -m pip install open3d' and then rerun the script.".format(
+            sys.executable
+        )
+    )
 
 FPS = 30
+
+
 class FPSCounter:
     def __init__(self):
         self.frameCount = 0
@@ -27,6 +34,7 @@ class FPSCounter:
             self.startTime = time.time()
         return self.fps
 
+
 pipeline = dai.Pipeline()
 camRgb = pipeline.create(dai.node.ColorCamera)
 monoLeft = pipeline.create(dai.node.MonoCamera)
@@ -40,7 +48,7 @@ xOut.input.setBlocking(False)
 
 camRgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_1080_P)
 camRgb.setBoardSocket(dai.CameraBoardSocket.CAM_A)
-camRgb.setIspScale(1,3)
+camRgb.setIspScale(1, 3)
 camRgb.setFps(FPS)
 
 monoLeft.setResolution(dai.MonoCameraProperties.SensorResolution.THE_400_P)
@@ -66,10 +74,9 @@ sync.out.link(xOut.input)
 xOut.setStreamName("out")
 
 
-
-
 with dai.Device(pipeline) as device:
     isRunning = True
+
     def key_callback(vis, action, mods):
         global isRunning
         if action == 0:
@@ -80,10 +87,13 @@ with dai.Device(pipeline) as device:
     vis.create_window()
     vis.register_key_action_callback(81, key_callback)
     pcd = o3d.geometry.PointCloud()
-    coordinateFrame = o3d.geometry.TriangleMesh.create_coordinate_frame(size=1000, origin=[0,0,0])
+    coordinateFrame = o3d.geometry.TriangleMesh.create_coordinate_frame(
+        size=1000, origin=[0, 0, 0]
+    )
     vis.add_geometry(coordinateFrame)
 
     first = True
+    load_pointcloud = False
     fpsCounter = FPSCounter()
     while isRunning:
         inMessage = q.get()
@@ -94,16 +104,32 @@ with dai.Device(pipeline) as device:
         cvRGBFrame = cv2.cvtColor(cvColorFrame, cv2.COLOR_BGR2RGB)
         fps = fpsCounter.tick()
         # Display the FPS on the frame
-        cv2.putText(cvColorFrame, f"FPS: {fps:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        cv2.putText(
+            cvColorFrame,
+            f"FPS: {fps:.2f}",
+            (10, 30),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            1,
+            (0, 0, 255),
+            2,
+        )
         cv2.imshow("color", cvColorFrame)
         key = cv2.waitKey(1)
-        if key == ord('q'):
+        if key == ord("q"):
             break
+        if key == ord("i"):
+            load_pointcloud = True
         if inPointCloud:
             t_before = time.time()
             points = inPointCloud.getPoints().astype(np.float64)
             pcd.points = o3d.utility.Vector3dVector(points)
+            print(np.count_nonzero(np.any(points != 0, axis=1)))
             colors = (cvRGBFrame.reshape(-1, 3) / 255.0).astype(np.float64)
+            if load_pointcloud:
+                np.savez("data/data_ptc.npz", points=points, colors=colors)
+                load_pointcloud = False
+                print("saved pc data!")
+
             pcd.colors = o3d.utility.Vector3dVector(colors)
             if first:
                 vis.add_geometry(pcd)

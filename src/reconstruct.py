@@ -1,6 +1,10 @@
 import cv2
 import depthai as dai
 import numpy as np
+import sys
+import time
+
+file_path = "data/"
 
 pipeline = dai.Pipeline()
 
@@ -31,9 +35,19 @@ stereo.setDefaultProfilePreset(dai.node.StereoDepth.PresetMode.DEFAULT)
 # link the device
 monoLeft.out.link(xoutLeft.input)  # 拓扑链接,out连input
 monoRight.out.link(xoutRight.input)
-monoLeft.out.link(stereo.left) # 将monocam信息同时输出到stereo部分
+monoLeft.out.link(stereo.left)  # 将monocam信息同时输出到stereo部分
 monoRight.out.link(stereo.right)
 
 
 with dai.Device(pipeline) as device:
+    is_Running = True
     qLeft = device.getOutputQueue(name="left", blocking=False)
+
+    while isRunning:
+        if key == ord("q"):
+            break
+        if key == ord("i"):
+            load_pointcloud = True
+
+        if inFrame is not None:
+            t_before = time.time()  # cal fps

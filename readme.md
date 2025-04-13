@@ -30,8 +30,13 @@ python3 ColorCamera/rgb_preview.py # 测试相机
 
 由于stereo处理部分计算量占主导，参看https://docs.luxonis.com/software/depthai-components/nodes/stereo_depth/#StereoDepth-Stereo%20depth%20FPS 来研究处理的时间
 
-+ Pointcloud 部分的例程也可以作为参考。之后需要运行mesh分割方法建立反射平面。
++ 之后需要运行mesh分割方法建立反射平面。
++ 处理Pointcloud Data的时候为了方便人来看，需要安装open3d依赖. points点云始终返回一个大小为230400的3维数组。大约210000个元素是非零的。
++ mesh处理可以依托open3d来实现。
 
+
+## task2
++ 光线追踪算法和实现是最重要的。需要一些光线追踪的库来实现。candidate： pyoptix(nv),
 ### 现象
 对于光线不佳、缺少纹理的表面数值会跳动较大
 
