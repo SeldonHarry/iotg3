@@ -37,6 +37,11 @@ python3 ColorCamera/rgb_preview.py # 测试相机
 
 ## task2
 + 光线追踪算法和实现是最重要的。需要一些光线追踪的库来实现。candidate： pyoptix(nv),
++ 但是我们需要实现的功能与其叫光线追踪（Ray Tracing），不如叫做射线检测（Ray Castling）
+
+
+
+
 ### 现象
 对于光线不佳、缺少纹理的表面数值会跳动较大
 
