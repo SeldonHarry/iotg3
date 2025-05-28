@@ -24,6 +24,11 @@ python3 install_requirements.py # 要挂代理
 python3 ColorCamera/rgb_preview.py # 测试相机
 ```
 用以上命令安装例程实例代码
+
+一些其他依赖包包括open3d 0.18.0
+```shell
+pip install pygsound 
+```
 ## task1
 思路：先得到高清的、无处理的深度数据，并且储存起来
 程序具体目标：先打开rgb图像层，然后在按下确认后开始使用双目视觉部分记录图像数据，结束记录后进行深度信息处理.
@@ -34,6 +39,7 @@ python3 ColorCamera/rgb_preview.py # 测试相机
 + 处理Pointcloud Data的时候为了方便人来看，需要安装open3d依赖. points点云始终返回一个大小为230400的3维数组。大约210000个元素是非零的。
 + mesh处理可以依托open3d来实现。
 
+存储pointcloud的例程参考：https://docs.luxonis.com/software/depthai/examples/pointcloud_visualization/
 
 ## task2
 + 光线追踪算法和实现是最重要的。需要一些光线追踪的库来实现。candidate： pyoptix(nv),

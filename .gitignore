@@ -1,3 +1,4 @@
 depthai/
 depthai-python/
 *.npz
+dependencies/
