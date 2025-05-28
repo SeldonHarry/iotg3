@@ -17,6 +17,7 @@ except ImportError:
     )
 
 FPS = 30
+filenamestr = "lab_box1"
 
 
 class FPSCounter:
@@ -123,10 +124,15 @@ with dai.Device(pipeline) as device:
             t_before = time.time()
             points = inPointCloud.getPoints().astype(np.float64)
             pcd.points = o3d.utility.Vector3dVector(points)
-            print(np.count_nonzero(np.any(points != 0, axis=1)))
+            print(
+                "None zero value nums: ",
+                np.count_nonzero(np.any(points != 0, axis=1)),
+                f"\t Total: {len(points)}",
+                f"\t Percentage: {np.count_nonzero(np.any(points != 0, axis=1))/len(points)}",
+            )
             colors = (cvRGBFrame.reshape(-1, 3) / 255.0).astype(np.float64)
             if load_pointcloud:
-                np.savez("data/data_ptc.npz", points=points, colors=colors)
+                np.savez(f"data/{filenamestr}.npz", points=points, colors=colors)
                 load_pointcloud = False
                 print("saved pc data!")
 
