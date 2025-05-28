@@ -27,7 +27,7 @@ python3 ColorCamera/rgb_preview.py # 测试相机
 
 一些其他依赖包包括open3d 0.18.0
 ```shell
-pip install pygsound 
+pip install pygsound open3d wavefile
 ```
 ## task1
 思路：先得到高清的、无处理的深度数据，并且储存起来
