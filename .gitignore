@@ -2,3 +2,4 @@ depthai/
 depthai-python/
 *.npz
 dependencies/
+models/FastSAM-x*

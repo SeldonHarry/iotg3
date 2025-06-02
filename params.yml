@@ -1,0 +1,27 @@
+# dependencies: pygsound fastsam depthai-python
+project_name: "IoT"
+version: 1.0
+
+use_camera_source: false # use oak cam for input
+example_data: "./data/dormitory.npz" # static example file
+
+mode: "ord" # ord for ordinary and ml for fastsam based on machine learning
+
+pt_preprocess:
+  estimate_normal: true
+  radius_filter: true
+  downsampling: true
+
+fastsam:
+  model: "FastSAM-s.pt" # choices: "FastSAM-s.pt" "FastSAM-x.pt"  onnx？
+  use_pt_process: false
+  size_filter: true # only select large point sets
+
+pgsound:
+  src:
+    coord:
+    radius:
+  lis:
+    coord:
+    radius:
+  matertial:
