@@ -11,3 +11,15 @@
 
 ## 4.6
 + 设法把深度信息提取的方式找到并储存成数组文件（.cvs or .npz）
+
+
+### PPT make
++ 展示pygsound接口理解过程: 如何设定表面性质参数
++ 评价不同情况下的点云构建效果（纹理、光照）=》因此选择的反射面上需要贴纸
++ 调研mesh建立方法，选择poisson方法建立mesh
++ 调研FastSAM论文，
+    ctx.diffuse_count = 2000000
+    ctx.specular_count = 20000 是pygsound中的关键参数
+
+    search_param=o3d.geometry.KDTreeSearchParamHybrid(radius=1e-3, max_nn=30)
+    )  # radius 为平均间距的2-5倍  这也是个关键参数
